@@ -1,0 +1,5 @@
+names
+aiohttp
+cchardet
+aiodns
+aiohttp[speedups]
