@@ -3,3 +3,4 @@ aiohttp
 cchardet
 aiodns
 aiohttp[speedups]
+aiohttp_cors

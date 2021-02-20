@@ -21,10 +21,10 @@ class MyComponent extends React.Component {
     }
     //console.log(typeof Number(this.state.value))
     event.preventDefault();
-    var url='/'+Number(this.state.value)
-    //console.log(axios.get(url))
-    axios.get(url).then((response) => {
+    var url='http://localhost:8080/'+Number(this.state.value)
 
+    axios.get(url).then((response) => {
+      console.log(response['data'])
   this.setState({
     isLoaded: true,
     items:[response['data']]
