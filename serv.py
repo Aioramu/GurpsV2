@@ -8,9 +8,10 @@ import aiohttp_cors
 @asyncio.coroutine
 async def handler(request):
     points= request.match_info.get('points', "100")
-    #print(int(points))
-    jason=Char.createpers(int(points)).json()
-    print(request)
+    tu= request.match_info.get('tu', "3")
+    print(int(tu))
+    jason=Char.createpers(int(points),int(tu)).json()
+    print(jason)
     response_obj = { 'data' : jason }
     return web.Response(text=json.dumps(jason),content_type='application/json',headers={
             "X-Custom-Server-Header": "Custom data",
@@ -18,7 +19,7 @@ async def handler(request):
 
 app = web.Application()
 cors = aiohttp_cors.setup(app)
-resource = cors.add(app.router.add_resource("/{points}"))
+resource = cors.add(app.router.add_resource("/{points}/{tu}"))
 oute = cors.add(
     resource.add_route("GET", handler), {
         "*": aiohttp_cors.ResourceOptions(

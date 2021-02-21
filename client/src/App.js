@@ -8,20 +8,23 @@ class MyComponent extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
-      value: ''
+      value: '',
+      tu:'3'
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {    this.setState({value: event.target.value}); }
+  handleChange2(event) {    this.setState({tu: event.target.tu}); }
   handleSubmit(event) {
-    //console.log(this.state.value)
+    console.log(this.state.value,this.state.tu)
     if (!this.state.value){
       this.props.onChange(null)
     }
     //console.log(typeof Number(this.state.value))
     event.preventDefault();
-    var url='http://localhost:8080/'+Number(this.state.value)
+    var url='http://185.244.172.149:8080/'+Number(this.state.value)+'/'+Number(this.state.tu)
 
     axios.get(url).then((response) => {
       console.log(response['data'])
@@ -63,6 +66,8 @@ render() {
             <p>Agility:{item.agility}   &nbsp;   &nbsp;&nbsp; Health:{item.health}</p>
             <p>Intellgence:{item.intellgence}   &nbsp;&nbsp;   &nbsp;         HP:{item.hp}</p>
             <p> &nbsp; Perception:{item.perception}</p>
+            <p>Forward dmg:{item.prm}   &nbsp;&nbsp;   &nbsp;         Aplitude dmg:{item.amp}</p>
+            <p> &nbsp; Weapon:{item.weapon[0]}&nbsp;{item.weapon[1]}</p>
             <p>Base Speed:{item.base_speed}   &nbsp;    Base Action:{item.base_action}</p>
           </center>
           </div>
